@@ -1,0 +1,7 @@
+{
+  "name": "hackernews-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Marcin Maslanka <marcin.maslanka@brainhub.pl>",
+  "license": "MIT"
+}
