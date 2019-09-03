@@ -8,10 +8,25 @@ const links = [
   }
 ];
 
+let linksCount = links.length;
+
 const resolvers = {
   Query: {
     info: () => 'this is string',
     feed: () => links
+  },
+  Mutation: {
+    post: (parent, args) => {
+      const link = {
+        id: `link${linksCount++}`,
+        description: args.description,
+        url: args.url
+      };
+
+      links.push(link);
+
+      return link;
+    }
   }
 };
 
