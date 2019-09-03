@@ -1,5 +1,7 @@
 const { GraphQLServer } = require('graphql-yoga');
 
+const { prisma } = require('./generated/prisma-client');
+
 const links = [
   {
     id: 0,
@@ -13,19 +15,19 @@ let linksCount = links.length;
 const resolvers = {
   Query: {
     info: () => 'this is string',
-    feed: () => links
+    feed: async () => await prisma.links()
   },
   Mutation: {
-    post: (parent, args) => {
+    post: async (parent, args) => {
       const link = {
-        id: `link${linksCount++}`,
         description: args.description,
         url: args.url
       };
 
-      links.push(link);
+      const newLink = await prisma.createLink(link);
+      console.log(`Created new link: ${newLink.url} (ID: ${newLink.id})`);
 
-      return link;
+      return newLink;
     }
   }
 };
