@@ -1,4 +1,4 @@
-const feed = (root, args, context) => {
+const feed = (parent, args, context) => {
   return context.prisma.links();
 };
 
