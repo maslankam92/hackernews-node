@@ -1,14 +1,16 @@
 const feed = async (parent, args, context) => {
-  const where = args.filter
+  const { filter, skip, first } = args;
+  const where = filter
     ? {
-        OR: [
-          { description_contains: args.filter },
-          { url_contains: args.filter }
-        ]
+        OR: [{ description_contains: filter }, { url_contains: filter }]
       }
     : {};
 
-  return await context.prisma.links({ where });
+  return await context.prisma.links({
+    where,
+    skip,
+    first
+  });
 };
 
 module.exports = {
