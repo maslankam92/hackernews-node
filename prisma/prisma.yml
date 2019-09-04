@@ -1,5 +1,3 @@
-#endpoint: ''
-#endpoint: ''
 endpoint: https://eu1.prisma.sh/marcin-maslanka-2548d7/hackernews-node/dev
 
 datamodel: datamodel.prisma
