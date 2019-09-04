@@ -1,5 +1,5 @@
 const feed = async (parent, args, context) => {
-  const { filter, skip, first } = args;
+  const { filter, skip, first, orderBy } = args;
   const where = filter
     ? {
         OR: [{ description_contains: filter }, { url_contains: filter }]
@@ -9,7 +9,8 @@ const feed = async (parent, args, context) => {
   return await context.prisma.links({
     where,
     skip,
-    first
+    first,
+    orderBy
   });
 };
 
